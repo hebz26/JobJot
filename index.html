@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobJot</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- For Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Font -->
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- TITLE HEADER SECTION -->
+    <div class="header">
+      <h1>JobJot</h1>
+      <p class="app-desc">
+        Your go-to user-friendly application designed to help you efficiently
+        track and manage your job applications.
+      </p>
+    </div>
+
+    <!-- BUTTONS BAR SECTION -->
+
+    <div class="buttons-wrapper">
+      <div class="buttons">
+        <div class="left-btns">
+          <button class="add-btn" id="add-btn">
+            <i class="fa-solid fa-plus"></i> Add Job
+          </button>
+        </div>
+        <div class="spacer"></div>
+        <div class="right-btns">
+          <button class="sort-btn">
+            <i class="fa-solid fa-arrow-up-wide-short"></i>Sort By
+          </button>
+          <button class="filter-btn">
+            <i class="fa-solid fa-sliders"></i>Filter
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL FORM -->
+
+    <div class="modal" id="jobModal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2>Add Job</h2>
+        <form id="jobForm">
+          <label for="company">Company Name:</label>
+          <input type="text" name="company" id="company" required />
+
+          <label for="job-position">Job Position Title:</label>
+          <input type="text" name="job-position" id="job-position" required />
+
+          <div class="form-group">
+            <div class="date-applied-box">
+              <label for="date-applied">Date Applied:</label>
+              <input
+                type="date"
+                name="date-applied"
+                id="date-applied"
+                required
+              />
+            </div>
+            <div class="date-deadline-box">
+              <label for="application-deadline">Application Deadline:</label>
+              <input
+                type="date"
+                name="application-deadline"
+                id="application-deadline"
+              />
+            </div>
+          </div>
+
+          <label for="job-description">Job Description:</label>
+          <textarea name="job-description" id="job-description"></textarea>
+
+          <label for="location">Location:</label>
+          <input type="text" name="location" id="location" />
+
+          <div class="form-group">
+            <div class="pay-box">
+              <label for="pay">Pay:</label>
+              <input type="text" name="pay" id="pay" />
+            </div>
+            <div class="status-box">
+              <label for="status">Status:</label>
+              <select name="status" id="status">
+                <option value="applied">Applied</option>
+                <option value="interviewed">Interviewed</option>
+                <option value="rejected">Rejected</option>
+                <option value="ghosted">Ghosted</option>
+                <option value="Offered">Offered</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="job-link">Job Link (LinkedIn):</label>
+          <input
+            type="url"
+            name="job-link"
+            id="job-link"
+            placeholder="https://www.linkedin.com/job-url"
+          />
+          <div class="resume-box">
+            <label for="resume-upload">Resume Upload:</label>
+            <div class="custom-file-upload">
+              <button type="button" id="customButton">Choose File</button>
+              <span id="fileName">No file chosen</span>
+              <input
+                type="file"
+                name="resume-upload"
+                id="resume-upload"
+                style="display: none"
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Add Job</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- CONTAINER FOR JOB CARDS -->
+
+    <div class="jobcards-container">
+      <!-- EXAMPLES JOB CARD -->
+
+      <div class="job-card">
+        <div class="card-header">
+          <h2 class="job-company">Tesla</h2>
+          <button class="openLink-btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </button>
+          <button class="remove-btn">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        </div>
+
+        <h3 class="job-title">Software Engineer Intern</h3>
+        <h4 class="job-date-applied">
+          <span class="label">Date Applied:</span>
+          <span class="value">2024-08-02</span>
+        </h4>
+        <h4 class="job-date-deadline">
+          <span class="label">Application Deadline:</span>
+          <span class="value">2024-08-22</span>
+        </h4>
+        <h4 class="job-description">
+          <span class="label">Description:</span>
+          <span class="value"
+            >React Developer. Understanding of DSA. Must have a bachelors
+            degree.
+          </span>
+        </h4>
+        <h4 class="job-status">
+          <span class="label">Status: </span> <span class="value">Applied</span>
+        </h4>
+        <h4 class="job-location">
+          <span class="label">Location:</span>
+          <span class="value">Detroit MI</span>
+        </h4>
+        <h4 class="job-pay">
+          <span class="label">Pay:</span> <span class="value">$52/hour</span>
+        </h4>
+        <div class="card-buttons">
+          <button class="resume-btn">
+            <i class="fa-regular fa-file"></i><span>View Resume</span>
+          </button>
+          <button class="edit-btn">
+            <i class="fa-regular fa-pen-to-square"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script defer src="script.js"></script>
+  </body>
+</html>
