@@ -37,15 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to create a job card element from a job object
   const createJobCardElement = (job) => {
-    const jobCard = jobCardTemplate.cloneNode(true); // Clone the job card template
-    const jobCardElement = jobCard.querySelector(".job-card"); // Find the job card element in the template
+    const jobCard = jobCardTemplate.cloneNode(true);
+    const jobCardElement = jobCard.querySelector(".job-card");
 
     if (!jobCardElement) {
       console.error("Job card element not found in template");
-      return null; // Exit if the job card element is not found
+      return null;
     }
 
-    // Set the data attributes and text content for the job card
     jobCardElement.dataset.jobId = job.id;
     jobCard.querySelector(".job-company").textContent = job.company || "N/A";
     jobCard.querySelector(".job-title").textContent = job.jobTitle || "N/A";
@@ -61,7 +60,25 @@ document.addEventListener("DOMContentLoaded", () => {
     jobCard.querySelector("[data-pay]").textContent = job.pay || "N/A";
     jobCard.querySelector(".openLink-btn").dataset.jobLink = job.jobLink || "#";
 
-    return jobCard; // Return the populated job card
+    // Add event listener to edit button
+    jobCard.querySelector(".edit-btn").addEventListener("click", () => {
+      // Populate the form with current job details
+      jobForm.company.value = job.company || "";
+      jobForm["job-position"].value = job.jobTitle || "";
+      jobForm["date-applied"].value = job.dateApplied || "";
+      jobForm["application-deadline"].value = job.applicationDeadline || "";
+      jobForm["job-description"].value = job.description || "";
+      jobForm.location.value = job.location || "";
+      jobForm.pay.value = job.pay || "";
+      jobForm.status.value = job.status || "";
+      jobForm["job-link"].value = job.jobLink || "";
+
+      // Add a hidden field to store the job ID for updating
+      jobForm.dataset.editingJobId = job.id;
+      openJobModal();
+    });
+
+    return jobCard;
   };
 
   // Function to render all job cards in the container
@@ -103,9 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
   jobForm.addEventListener("submit", function (e) {
     e.preventDefault(); // Prevent the default form submission
 
-    // Create a new job object from the form values
+    const isEditing = jobForm.dataset.editingJobId; // Check if we're editing an existing job
+
     const newJob = {
-      id: Date.now(), // Unique ID based on current timestamp
+      id: isEditing ? Number(isEditing) : Date.now(), // Use existing ID if editing
       company: jobForm.company.value.trim() || "N/A",
       jobTitle: jobForm["job-position"].value.trim() || "N/A",
       dateApplied: jobForm["date-applied"].value.trim() || "N/A",
@@ -118,11 +136,19 @@ document.addEventListener("DOMContentLoaded", () => {
       jobLink: jobForm["job-link"].value.trim() || "https://www.linkedin.com/",
     };
 
-    // Save the new job and update the UI
-    saveJobToLocalStorage(newJob);
+    if (isEditing) {
+      // Update existing job
+      jobs = jobs.map((job) => (job.id === Number(isEditing) ? newJob : job));
+      jobForm.removeAttribute("data-editing-job-id"); // Clear editing ID
+    } else {
+      // Add new job
+      saveJobToLocalStorage(newJob);
+    }
+
+    localStorage.setItem("jobs", JSON.stringify(jobs)); // Save the updated jobs array
     jobForm.reset();
     closeJobModal();
-    renderJobCards();
+    renderJobCards(); // Re-render the job cards to reflect changes
   });
 
   //-----------------INITIAL JOB CARDS RENDERING-----------------

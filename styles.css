@@ -206,6 +206,7 @@ h1{
 /* -------------------- Modal Form --------------------*/
 
 .modal{
+    z-index: 2;
     display: none;
     position: fixed;
     top: 0;
