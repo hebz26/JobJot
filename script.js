@@ -35,6 +35,23 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("jobs", JSON.stringify(jobs)); // Save the updated jobs array to localStorage
   };
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Offered":
+        return "#28a745"; // Green
+      case "Ghosted":
+        return "#6c757d"; // Grey
+      case "Rejected":
+        return "#dc3545"; // Red
+      case "Applied":
+        return "#007bff"; // Blue
+      case "Interviewed":
+        return "#ffc107"; // Yellow
+      default:
+        return "#ddd"; // Default color
+    }
+  };
+
   // Function to create a job card element from a job object
   const createJobCardElement = (job) => {
     const jobCard = jobCardTemplate.cloneNode(true);
@@ -45,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return null;
     }
 
+    // Set the job details
     jobCardElement.dataset.jobId = job.id;
     jobCard.querySelector(".job-company").textContent = job.company || "N/A";
     jobCard.querySelector(".job-title").textContent = job.jobTitle || "N/A";
@@ -60,6 +78,17 @@ document.addEventListener("DOMContentLoaded", () => {
     jobCard.querySelector("[data-pay]").textContent = job.pay || "N/A";
     jobCard.querySelector(".openLink-btn").dataset.jobLink = job.jobLink || "#";
 
+    // Set the color of the status circle and border-right
+    const statusColor = getStatusColor(job.status || "N/A");
+    const statusCircle = jobCard.querySelector(".status-circle");
+
+    if (statusCircle) {
+      statusCircle.style.backgroundColor = statusColor;
+    }
+
+    // Apply status color to border-right
+    jobCardElement.style.borderRight = `10px solid ${statusColor}`;
+
     // Add event listener to edit button
     jobCard.querySelector(".edit-btn").addEventListener("click", () => {
       // Populate the form with current job details
@@ -72,6 +101,18 @@ document.addEventListener("DOMContentLoaded", () => {
       jobForm.pay.value = job.pay || "";
       jobForm.status.value = job.status || "";
       jobForm["job-link"].value = job.jobLink || "";
+
+      // Set the color of the status circle and border-right when editing
+      let statusString = jobForm.status.value;
+      let statusColor = getStatusColor(statusString);
+
+      // Get the status circle element
+      if (statusCircle) {
+        statusCircle.style.backgroundColor = statusColor;
+      }
+
+      // Apply status color to border-right
+      jobCardElement.style.borderRight = `10px solid ${statusColor}`;
 
       // Add a hidden field to store the job ID for updating
       jobForm.dataset.editingJobId = job.id;

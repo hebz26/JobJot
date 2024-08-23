@@ -174,16 +174,16 @@ h1{
 
 .job-status {
     display: flex;
+    align-items: center; /* Center the status and circle vertically */
 }
 
-.job-status .value::after {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px; 
+.job-status .status-circle {
+    width: 5px;
+    height: 5px;
+    padding: 2px;
     border-radius: 50%;
-    background-color: #28a745; 
-    margin-left: 8px; 
+    background-color: #007bff;
+    margin-left: 5px;
 }
 
 .card-buttons {
