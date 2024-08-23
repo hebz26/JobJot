@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const jobForm = document.getElementById("jobForm"); // Form element for submitting job details
   const jobCardsContainer = document.querySelector(".jobcards-container"); // Container to hold job cards
   const jobCardTemplate = document.getElementById("job-card-template").content; // Template for job cards
+  const jobCountElement = document.querySelector(".job-count"); // Element to display job count
 
   // Load jobs from localStorage or initialize as an empty array if none exist
   let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
@@ -147,6 +148,15 @@ document.addEventListener("DOMContentLoaded", () => {
         jobCardsContainer.appendChild(jobCard); // Append the job card to the container
       }
     });
+
+    updateJobCount(); // Update job count after rendering cards
+  };
+
+  // Function to update the job count display
+  const updateJobCount = () => {
+    if (jobCountElement) {
+      jobCountElement.textContent = `Jobs: (${jobs.length})`;
+    }
   };
 
   // Function to remove a job by ID
