@@ -14,7 +14,7 @@
     <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet" />
   </head>
   <body>
-    <!-- TITLE HEADER SECTION -->
+    <!------------------------------ TITLE HEADER SECTION  -------------------------------->
     <div class="header">
       <h1>JobJot</h1>
       <p class="app-desc">
@@ -23,41 +23,101 @@
       </p>
     </div>
 
-    <!-- BUTTONS BAR SECTION -->
+    <!------------------------------ BUTTONS BAR SECTION -------------------------------->
     <div class="buttons-wrapper">
       <div class="buttons">
+        <!-- Left Button -->
         <div class="left-btns">
           <button class="add-btn" id="add-btn">
             <i class="fa-solid fa-plus"></i> Add Job
           </button>
         </div>
         <div class="spacer"></div>
+        <!-- Right Buttons -->
         <div class="right-btns">
-          <!-- Button to trigger the sorting menu -->
-          <button id="sort-btn" class="sort-btn">
-            <i class="fa-solid fa-arrow-up-wide-short"></i> Sort By
-          </button>
+          <!-- SORT BUTTON -->
+          <div class="sort-stuff">
+            <!-- Button to trigger the sorting menu -->
+            <button id="sort-btn" class="sort-btn">
+              <i class="fa-solid fa-arrow-up-wide-short"></i> Sort By
+            </button>
 
-          <!-- Sorting menu -->
-          <div id="sort-menu" class="sort-menu" style="display: none">
-            <button data-sort="company">Company Name (A-Z)</button>
-            <button data-sort="date">Date Applied (Earliest)</button>
-            <button data-sort="status">Status</button>
+            <!-- Sorting menu -->
+            <div id="sort-menu" class="sort-menu" style="display: none">
+              <button data-sort="company">Company Name (A-Z)</button>
+              <button data-sort="date">Date Applied (Earliest)</button>
+              <button data-sort="status">Status</button>
+            </div>
           </div>
-          <button class="filter-btn">
-            <i class="fa-solid fa-sliders"></i>Filter
-          </button>
+
+          <!-- FILTER BUTTON -->
+          <div class="filter-stuff">
+            <!-- Button to trigger the filter menu -->
+            <button id="filter-btn" class="filter-btn">
+              <i class="fa-solid fa-sliders"></i> Filter
+            </button>
+
+            <!-- Filter menu -->
+            <div id="filter-menu" class="filter-menu" style="display: none">
+              <div class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  id="filter-applied"
+                  value="Applied"
+                  class="status-filter"
+                />
+                <label for="filter-applied">Applied</label>
+              </div>
+              <div class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  id="filter-interviewed"
+                  value="Interviewed"
+                  class="status-filter"
+                />
+                <label for="filter-interviewed">Interviewed</label>
+              </div>
+              <div class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  id="filter-offered"
+                  value="Offered"
+                  class="status-filter"
+                />
+                <label for="filter-offered">Offered</label>
+              </div>
+              <div class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  id="filter-ghosted"
+                  value="Ghosted"
+                  class="status-filter"
+                />
+                <label for="filter-ghosted">Ghosted</label>
+              </div>
+              <div class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  id="filter-rejected"
+                  value="Rejected"
+                  class="status-filter"
+                />
+                <label for="filter-rejected">Rejected</label>
+              </div>
+            </div>
+          </div>
+          <!-- END filter menu -->
         </div>
       </div>
     </div>
 
-    <!-- JOB COUNT -->
+    <!------------------------------  JOB COUNT SECTION  -------------------------------->
 
     <div class="job-count-container">
       <p class="job-count">Jobs: (23)</p>
     </div>
 
-    <!-- MODAL FORM -->
+    <!------------------------------ MODAL FORM -------------------------------->
     <div class="modal" id="jobModal">
       <div class="modal-content">
         <span id="closeModal" class="close">&times;</span>
@@ -125,9 +185,9 @@
       </div>
     </div>
 
-    <!-- CONTAINER FOR JOB CARDS -->
+    <!------------------------------ CONTAINER FOR JOB CARDS  -------------------------------->
     <div class="jobcards-container">
-      <!-- EXAMPLE JOB CARD -->
+      <!------------------------------ TEMPLATE JOB CARD  -------------------------------->
       <template id="job-card-template">
         <div class="job-card" data-jobId="">
           <div class="card-header">

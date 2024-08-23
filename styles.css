@@ -70,28 +70,14 @@ h1{
     transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-.sort-menu {
+.sort-menu, .filter-menu {
     display: none;
     position: absolute;
     background: white;
     border: 1px solid #ddd;
     padding: 5px;
     z-index: 1;
-    margin-top: 50px;
-  }
-  
-  .sort-menu button {
-    display: block;
-    width: 100%;
-    padding: 5px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    text-align: left;
-  }
-  
-  .sort-menu button:hover {
-    background: #f0f0f0;
+    margin-top: 5px;
   }
 
 .sort-btn, .filter-btn{
@@ -281,6 +267,76 @@ input, textarea, #status{
     display: flex;
     gap: 20px;
 }
+
+/* -------------------- MENUS --------------------*/
+
+/* -------------------- FILTER MENU --------------------*/
+
+
+  
+  .filter-menu input[type="checkbox"] {
+    display: none; /* Hide the default checkbox */
+  }
+  
+
+  
+  /* For the custom checkbox container */
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 5px;
+  }
+  
+  /* Custom checkbox styling */
+  .custom-checkbox input[type="checkbox"] {
+    display: none; /* Hide the default checkbox */
+  }
+  
+  .custom-checkbox label {
+    position: relative;
+    padding-left: 30px; /* Adjust based on your design */
+    cursor: pointer;
+    display: flex;
+    align-items: left;
+  }
+  
+  .custom-checkbox label::before {
+    content: '';
+    position: absolute;
+    left: 0; /* Adjusted to fit the text properly */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Center vertically */
+    width: 12px; /* Increased size for better visibility */
+    height: 12px; /* Increased size for better visibility */
+    border-radius: 50%; /* Circular appearance */
+    border: 2px solid #ddd; /* Subtle border color */
+    background: #fff; /* Background color */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked + label::before {
+    background: #007bff; 
+    border-color: #007bff; 
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.1); 
+  }
+
+  /* -------------------- SORT MENU --------------------*/
+
+  .sort-menu button, .filter-menu button {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .sort-menu button:hover {
+    background: #f0f0f0;
+  }
 
 
 

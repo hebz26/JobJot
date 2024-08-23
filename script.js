@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const jobCountElement = document.querySelector(".job-count");
   const sortBtn = document.getElementById("sort-btn");
   const sortMenu = document.getElementById("sort-menu");
+  const filterBtn = document.getElementById("filter-btn");
+  const filterMenu = document.getElementById("filter-menu");
 
   let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
 
@@ -46,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         (a, b) => (statusOrder[a.status] || 6) - (statusOrder[b.status] || 6)
       );
     }
-    renderJobCards();
+    renderJobCards(); // Render after sorting
   };
 
   sortBtn.addEventListener("click", () => {
@@ -62,10 +64,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Click event handler to hide the menu if clicked outside
+  // Click event handler to hide the sort menu if clicked outside
   document.addEventListener("click", (e) => {
     if (!sortBtn.contains(e.target) && !sortMenu.contains(e.target)) {
       sortMenu.style.display = "none";
+    }
+  });
+
+  //-----------------FILTERING-----------------
+
+  const getSelectedFilters = () => {
+    const checkboxes = document.querySelectorAll(".status-filter");
+    const selectedFilters = Array.from(checkboxes)
+      .filter((checkbox) => checkbox.checked)
+      .map((checkbox) => checkbox.value);
+
+    return selectedFilters;
+  };
+
+  const filterJobs = (jobs) => {
+    const selectedFilters = getSelectedFilters();
+
+    if (selectedFilters.length === 0) {
+      return jobs; // No filters selected, return all jobs
+    }
+
+    return jobs.filter((job) => selectedFilters.includes(job.status));
+  };
+
+  filterBtn.addEventListener("click", () => {
+    filterMenu.style.display =
+      filterMenu.style.display === "block" ? "none" : "block";
+  });
+
+  filterMenu.addEventListener("click", (e) => {
+    if (
+      e.target.tagName === "INPUT" &&
+      e.target.classList.contains("status-filter")
+    ) {
+      renderJobCards(); // Re-render job cards whenever a filter is changed
+    }
+  });
+
+  // Click event handler to hide the filter menu if clicked outside
+  document.addEventListener("click", (e) => {
+    if (!filterBtn.contains(e.target) && !filterMenu.contains(e.target)) {
+      filterMenu.style.display = "none";
     }
   });
 
@@ -154,7 +198,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const renderJobCards = () => {
     jobCardsContainer.innerHTML = "";
-    jobs.forEach((job) => {
+    const filteredJobs = filterJobs(jobs); // Apply filters
+
+    filteredJobs.forEach((job) => {
       const jobCard = createJobCardElement(job);
 
       if (jobCard) {
@@ -175,12 +221,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    updateJobCount();
+    updateJobCount(filteredJobs.length); // Pass the count of filtered jobs
   };
 
-  const updateJobCount = () => {
+  const updateJobCount = (count) => {
     if (jobCountElement) {
-      jobCountElement.textContent = `Jobs: (${jobs.length})`;
+      jobCountElement.textContent = `Jobs: (${count})`; // Display filtered job count
     }
   };
 
@@ -222,5 +268,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderJobCards();
   });
 
+  // Initial render of job cards
   renderJobCards();
 });
