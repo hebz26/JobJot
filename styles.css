@@ -55,8 +55,6 @@ h1{
 .right-btns{
    display: flex;
    flex-wrap: wrap;
-   justify-content: center;
-   align-items: center;
    gap: 10px;
 }
 
@@ -71,6 +69,30 @@ h1{
     cursor: pointer; 
     transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
+
+.sort-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 5px;
+    z-index: 1;
+    margin-top: 50px;
+  }
+  
+  .sort-menu button {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .sort-menu button:hover {
+    background: #f0f0f0;
+  }
 
 .sort-btn, .filter-btn{
     background-color: #f0f0f0; 
@@ -259,6 +281,8 @@ input, textarea, #status{
     display: flex;
     gap: 20px;
 }
+
+
 
 
 

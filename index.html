@@ -33,9 +33,17 @@
         </div>
         <div class="spacer"></div>
         <div class="right-btns">
-          <button class="sort-btn">
-            <i class="fa-solid fa-arrow-up-wide-short"></i>Sort By
+          <!-- Button to trigger the sorting menu -->
+          <button id="sort-btn" class="sort-btn">
+            <i class="fa-solid fa-arrow-up-wide-short"></i> Sort By
           </button>
+
+          <!-- Sorting menu -->
+          <div id="sort-menu" class="sort-menu" style="display: none">
+            <button data-sort="company">Company Name (A-Z)</button>
+            <button data-sort="date">Date Applied (Earliest)</button>
+            <button data-sort="status">Status</button>
+          </div>
           <button class="filter-btn">
             <i class="fa-solid fa-sliders"></i>Filter
           </button>
