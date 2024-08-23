@@ -52,8 +52,19 @@ h1{
     gap: 100px;
 }
 
+@media (max-width: 580px) {
+    .spacer {
+        width: 10px; 
+    }
+    .buttons{
+        gap: 30px;
+    }
+}
+
 .right-btns{
    display: flex;
+   align-items: flex-end;
+   justify-content: flex-end;
    flex-wrap: wrap;
    gap: 10px;
 }
@@ -113,6 +124,10 @@ h1{
     border-color: #b0b0b0; 
     color: #000; 
 }
+/* -------------------- Job Count --------------------*/
+.job-count{
+    color: gray;    
+}
 
 /* -------------------- Job Card --------------------*/
 
@@ -140,6 +155,10 @@ h1{
 .card-header{
     display: flex;
     justify-content: space-between;
+}
+
+#job-description{
+    resize: none;
 }
 
 .remove-btn, .resume-btn, .openLink-btn, .edit-btn{
@@ -176,13 +195,18 @@ h1{
     margin-right: 5px;
 }
 
+.job-card .job-title {
+    font-weight: 500; 
+    color:gray ;
+}
+
 .value {
     font-weight: normal; 
 }
 
 .job-status {
     display: flex;
-    align-items: center; /* Center the status and circle vertically */
+    align-items: center; 
 }
 
 .job-status .status-circle {
@@ -196,7 +220,7 @@ h1{
 
 .card-buttons {
     display: flex;
-    justify-content: flex-end; /* Aligns items to the far right */
+    justify-content: flex-end;
   }
 
 /* -------------------- Job Cards Container --------------------*/
@@ -205,6 +229,7 @@ h1{
     display: flex;
     flex-wrap: wrap;
     justify-content: center; 
+    align-items: flex-start;
     gap: 20px;
     width: 100%; 
     max-width: 1200px; 
@@ -271,16 +296,7 @@ input, textarea, #status{
 /* -------------------- MENUS --------------------*/
 
 /* -------------------- FILTER MENU --------------------*/
-
-
   
-  .filter-menu input[type="checkbox"] {
-    display: none; /* Hide the default checkbox */
-  }
-  
-
-  
-  /* For the custom checkbox container */
   .custom-checkbox {
     display: flex;
     align-items: center;
@@ -288,14 +304,14 @@ input, textarea, #status{
     padding: 5px;
   }
   
-  /* Custom checkbox styling */
+
   .custom-checkbox input[type="checkbox"] {
     display: none; /* Hide the default checkbox */
   }
   
   .custom-checkbox label {
     position: relative;
-    padding-left: 30px; /* Adjust based on your design */
+    padding-left: 25px; 
     cursor: pointer;
     display: flex;
     align-items: left;
@@ -304,16 +320,16 @@ input, textarea, #status{
   .custom-checkbox label::before {
     content: '';
     position: absolute;
-    left: 0; /* Adjusted to fit the text properly */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Center vertically */
-    width: 12px; /* Increased size for better visibility */
-    height: 12px; /* Increased size for better visibility */
-    border-radius: 50%; /* Circular appearance */
-    border: 2px solid #ddd; /* Subtle border color */
-    background: #fff; /* Background color */
-    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    left: 0; 
+    top: 50%;
+    transform: translateY(-50%); 
+    width: 12px; 
+    height: 12px; 
+    border-radius: 50%; 
+    border: 2px solid #ddd; 
+    background: #fff; 
+    transition: background-color 0.3s, border-color 0.3s; 
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1); 
   }
   
   .custom-checkbox input[type="checkbox"]:checked + label::before {

@@ -132,12 +132,7 @@
           <div class="form-group">
             <div class="date-applied-box">
               <label for="date-applied">Date Applied:</label>
-              <input
-                type="date"
-                name="date-applied"
-                id="date-applied"
-                required
-              />
+              <input type="date" name="date-applied" id="date-applied" />
             </div>
             <div class="date-deadline-box">
               <label for="application-deadline">Application Deadline:</label>
@@ -150,7 +145,11 @@
           </div>
 
           <label for="job-description">Job Description:</label>
-          <textarea name="job-description" id="job-description"></textarea>
+          <textarea
+            name="job-description"
+            id="job-description"
+            maxlength="145"
+          ></textarea>
 
           <label for="location">Location:</label>
           <input type="text" name="location" id="location" />
@@ -235,6 +234,6 @@
       </template>
     </div>
 
-    <script defer src="script.js"></script>
+    <script defer src="script.js" type="module"></script>
   </body>
 </html>
